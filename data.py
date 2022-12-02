@@ -35,7 +35,7 @@ while ProgramLoop:
        
 
     #Option 4 - New Contact
-    elif (userInput == "4"):
+    elif(userInput == "4"):
         print("PlaceHolder")
 
 
@@ -46,6 +46,5 @@ while ProgramLoop:
 
     #Option 6 - End Loop
     elif(userInput == "6"):
-        Programloop = False
         break
     
