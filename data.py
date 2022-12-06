@@ -28,12 +28,28 @@ while ProgramLoop:
 
     #Option 1 - Display Contact Names
     if(userInput == "1"):
-        print(books)
-    
+        for i in range(len(books)):
+            print(books[i]["title"])
+            print(books[i]["author"])
+            print(books[i]["isbn"])
+            print(books[i]["genre"])
+            print(",")
 
     #Option 2 - Search for Contact
     elif(userInput == "2"):
-        print("PlaceHolder")
+        verify = 0
+        userask = input("Enter the title of your book:\n")
+        for i in range(len(books)):
+            if userask == books[i]["title"]:
+                print(books[i]["title"])
+                print(books[i]["author"])
+                print(books[i]["isbn"])
+                print(books[i]["genre"])
+                verify = 0
+            else:
+                verify = 1
+        if verify == 1:
+            print("Book not found")
 
 
     #Option 3 - Edit Contact
