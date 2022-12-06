@@ -1,6 +1,13 @@
 #Data Management by Adi
+import json
 
-#Inizialize the list
+#Load data from JSON file
+file = open("book_data.json", "r")
+dataStr = file.read()
+file.close()
+
+books = json.loads(dataStr)
+
 
 #Set Loop True
 ProgramLoop = True
@@ -21,7 +28,7 @@ while ProgramLoop:
 
     #Option 1 - Display Contact Names
     if(userInput == "1"):
-        print("PlaceHolder")
+        print(books)
     
 
     #Option 2 - Search for Contact
