@@ -1,6 +1,6 @@
 #Data Management by Adi
 import json
-
+import helper
 #Load data from JSON file
 file = open("book_data.json", "r")
 dataStr = file.read()
@@ -54,8 +54,12 @@ while ProgramLoop:
 
     #Option 3 - Edit Contact
     elif(userInput == "3"):
-        print("PlaceHolder")
-       
+        sort_data = []
+        for i in range(len(books)):
+            sort_data.append(books[i]["genre"])
+        helper.insertionSort(sort_data)
+        print(sort_data)
+
 
     #Option 4 - New Contact
     elif(userInput == "4"):
