@@ -54,11 +54,8 @@ while ProgramLoop:
 
     #Option 3 - Edit Contact
     elif(userInput == "3"):
-        sort_data = []
-        for i in range(len(books)):
-            sort_data.append(books[i]["genre"])
-        helper.insertionSort(sort_data)
-        print(sort_data)
+        k = list(books.values())
+        print(helper.bubblesort(k))
 
 
     #Option 4 - New Contact

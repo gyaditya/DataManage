@@ -1,9 +1,8 @@
-#Insertion Sort
-def insertionSort(anArray):
-    for i in range(1, len(anArray)):
-        insertion = anArray[i]["genre"]
-        n = i -1
-        while n >= 0 and insertion < anArray[n]:
-            anArray[n + 1] = anArray[n]
-            n = n - 1
-        anArray[n + 1] = insertion
+#Bubble sort
+
+def bubblesort(k):
+    for i in range(1, len(k)):
+        for j in range(len(k) - i):
+            if k[j] > k[j+1]:
+                k[j], k[j+1] = k[j+1], k[j]
+            
