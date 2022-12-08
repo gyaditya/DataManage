@@ -54,8 +54,9 @@ while ProgramLoop:
 
     #Option 3 - Edit Contact
     elif(userInput == "3"):
-        k = list(books.values())
-        print(helper.bubblesort(k))
+        helper.bubbleSort(books)
+        for i in range(len(books)):
+            print(books[i]["genre"])
 
 
     #Option 4 - New Contact

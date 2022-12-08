@@ -1,8 +1,7 @@
-#Bubble sort
+key = "genre"
 
-def bubblesort(k):
-    for i in range(1, len(k)):
-        for j in range(len(k) - i):
-            if k[j] > k[j+1]:
-                k[j], k[j+1] = k[j+1], k[j]
-            
+def bubbleSort(anArray):
+    for i in range(len(anArray)):
+        for j in range(i+1, len(anArray)):
+            if anArray[i][key] > anArray[j][key]:
+                anArray[i], anArray[j] = anArray[j], anArray[i]
