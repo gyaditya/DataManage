@@ -57,6 +57,7 @@ def opt4():
         for i in range(len(books)):
             if userin == books[i]["title"].upper():
                 favs.append(books[i])
+                print("Book Added")
                 return
         print("Book was not found")
         return
@@ -66,8 +67,9 @@ def opt4():
 def opt5():
         userin = input("Please enter The title of The book you want to Remove:\n").upper()
         for i in range(len(favs)):
-            if favs[i]["title"].upper() == userin:
+            if userin == favs[i]["title"].upper():
                 favs.pop(i)
+                print("Book removed")
                 return
         print("Book was not found")
         return
