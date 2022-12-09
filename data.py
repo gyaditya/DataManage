@@ -1,16 +1,86 @@
 #Data Management by Adi
 import json
 import helper
+
+
 #Load book data from JSON file
 file = open("book_data.json", "r")
 dataStr = file.read()
 file.close()
 books = json.loads(dataStr)
+
 #Load Favourites from JSON file
 file2 = open("fav.json", "r")
 dataStr2 = file2.read()
 file2.close()
 favs = json.loads(dataStr2)
+
+
+#Make functions For all of the Options
+
+#Option 1
+def opt1():
+        for i in range(len(books)):
+            print(books[i]["title"], ",",
+            books[i]["author"], "," ,
+            books[i]["isbn"], "," ,
+            books[i]["genre"])
+
+
+#Option 2
+def opt2():
+        userin = input("Enter the title of your book:\n")
+        for i in range(len(books)):
+            if userin == books[i]["title"]:
+                print(books[i]["title"], ",",
+                books[i]["author"], "," ,
+                books[i]["isbn"], "," ,
+                books[i]["genre"])
+                return
+        print("Book not found")
+        return
+
+
+#Option 3
+def opt3():
+        helper.bubbleSort(books, "genre")
+        for i in range(len(books)):
+                print(books[i]["title"], ",",
+                books[i]["author"], "," ,
+                books[i]["isbn"], "," ,
+                books[i]["genre"])
+
+
+#Option 4
+def opt4():
+        userin = input("What Is the name of the book you want to favouriate:\n").upper()
+        for i in range(len(books)):
+            if userin == books[i]["title"].upper():
+                favs.append(books[i])
+                return
+        print("Book was not found")
+        return
+
+
+#Option 5
+def opt5():
+        userin = input("Please enter The title of The book you want to Remove:\n").upper()
+        for i in range(len(favs)):
+            if favs[i]["title"].upper() == userin:
+                favs.pop(i)
+                return
+        print("Book was not found")
+        return
+
+            
+#Option 6
+def opt6():
+        for n in range(len(favs)):
+            print(favs[n]["title"], ",",
+            favs[n]["author"], "," ,
+            favs[n]["isbn"], "," ,
+            favs[n]["genre"])
+
 
 #Set Loop True
 ProgramLoop = True
@@ -32,67 +102,27 @@ while ProgramLoop:
 
     #Option 1
     if(userInput == "1"):
-        for i in range(len(books)):
-            print(books[i]["title"], ",",
-            books[i]["author"], "," ,
-            books[i]["isbn"], "," ,
-            books[i]["genre"])
-
+        opt1()
 
     #Option 2
     elif(userInput == "2"):
-        verify = 0
-        userask = input("Enter the title of your book:\n")
-        for i in range(len(books)):
-            if userask == books[i]["title"]:
-                print(books[i]["title"], ",",
-                books[i]["author"], "," ,
-                books[i]["isbn"], "," ,
-                books[i]["genre"])
-                verify = 0
-            else:
-                verify = 1
-        if verify == 1:
-            print("Book not found")
-
+        opt2()
 
     #Option 3
     elif(userInput == "3"):
-        helper.bubbleSort(books) # Sorted By Genre
-        for i in range(len(books)):
-                print(books[i]["title"], ",",
-                books[i]["author"], "," ,
-                books[i]["isbn"], "," ,
-                books[i]["genre"])
-            
-
+        opt3()
 
     #Option 4
     elif(userInput == "4"):
-        userin = input("What Is the name of the book you want to favouriate:\n")
-        for i in range(len(books)):
-            if userin == books[i]["title"]:
-                favs.append(books[i])
-
-        userin2 = input("Do you want to See your Favouraite list?\n Yes or No: \n")
-
-        if userin2 == "yes":
-            for n in range(len(favs)):
-                print(favs[n]["title"], ",",
-                favs[n]["author"], "," ,
-                favs[n]["isbn"], "," ,
-                favs[n]["genre"])
-
+        opt4()
 
     #Option 5
     elif(userInput == "5"):
-        print("PlaceHolder")
-
+        opt5()
 
     #Option 6
     elif(userInput == "6"):
-        print("PlaceHolder")
-
+        opt6()
 
     #Option 7
     elif(userInput == "7"):
