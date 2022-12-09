@@ -75,11 +75,11 @@ def opt5():
             
 #Option 6
 def opt6():
-        for n in range(len(favs)):
-            print(favs[n]["title"], ",",
-            favs[n]["author"], "," ,
-            favs[n]["isbn"], "," ,
-            favs[n]["genre"])
+        for i in range(len(favs)):
+            print(favs[i]["title"], ",",
+            favs[i]["author"], "," ,
+            favs[i]["isbn"], "," ,
+            favs[i]["genre"])
 
 
 #Set Loop True
@@ -127,4 +127,3 @@ while ProgramLoop:
     #Option 7
     elif(userInput == "7"):
         break
-    
