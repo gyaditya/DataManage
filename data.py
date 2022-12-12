@@ -43,8 +43,10 @@ def opt2():
 
 #Option 3
 def opt3():
-        helper.bubbleSort(books, "genre")
-        for i in range(len(books)):
+        userin = input("What is the data you want to sort by:\n").lower()
+        if userin == "title" or "author" or "isbn" or "genre":
+            helper.bubbleSort(books, userin)
+            for i in range(len(books)):
                 print(books[i]["title"], ",",
                 books[i]["author"], "," ,
                 books[i]["isbn"], "," ,
