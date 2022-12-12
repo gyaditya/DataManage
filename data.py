@@ -84,6 +84,13 @@ def opt6():
             favs[i]["genre"])
 
 
+#Write to JSON
+def writejson():
+        json_str = json.dumps(favs)
+        with open("fav.json", "w") as f:
+            f.write(json_str)
+
+
 #Set Loop True
 ProgramLoop = True
 
@@ -128,4 +135,5 @@ while ProgramLoop:
 
     #Option 7
     elif(userInput == "7"):
+        writejson()
         break
