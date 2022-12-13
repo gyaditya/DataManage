@@ -15,6 +15,12 @@ dataStr2 = file2.read()
 file2.close()
 favs = json.loads(dataStr2)
 
+#Load User Information From JSON file
+file3 = open("userinformation.json", "r")
+dataStr3 = file3.read()
+file3.close()
+userinfo = json.loads(dataStr3)
+
 
 #Make functions For all of the Options
 
@@ -29,15 +35,15 @@ def opt1():
 
 #Option 2
 def opt2():
-        userin = input("Enter the title of your book:\n")
+        userin = input("Enter the Genre of your book:\n").lower()
         for i in range(len(books)):
-            if userin == books[i]["title"]:
+            if userin == books[i]["genre"]:
                 print(books[i]["title"], ",",
                 books[i]["author"], "," ,
                 books[i]["isbn"], "," ,
                 books[i]["genre"])
                 return
-        print("Book not found")
+        print("None found")
         return
 
 
@@ -92,11 +98,75 @@ def writejson():
         with open("fav.json", "w") as f:
             f.write(json_str)
 
+#Loops
+userlogin = True
+ProgramLoop = False
 
-#Set Loop True
-ProgramLoop = True
 
-#Start Looping
+#User Login and Create Account
+
+while userlogin:
+
+    #Print the Options
+    print("Enter 'L' to log in:")
+    print("Enter 'S' to sign up:")
+    print("Enter 'E' to exit:")
+
+    # Get the user's choice
+    choice = input("Please Enter Your choice:\n").lower()
+
+
+    #Log In
+    if choice == "l":
+      #Get the User Informationj
+      username = input("Enter your username:")
+      password = input("Enter your password:")
+
+      #Log the User In
+      if username in userinfo and userinfo[username] == password:
+        logged_in = True
+        print("Login successful!")
+        ProgramLoop = True
+        break
+
+      else:
+          #Incase UserInformation Not Found
+        print("Incorrect username or password.")
+
+
+    # Signup
+    elif choice == "s":
+      username = input("Create a username:")
+      password = input("Create a password:")
+
+      # If the username is not already in the users dictionary, add it
+      if username not in userinfo:
+        userinfo[username] = password
+        print("Sign up successful!")
+        ProgramLoop = True
+
+        #Upload To JSON
+        json_str = json.dumps(userinfo)
+        with open("userinformation.json", "w") as f:
+            f.write(json_str)
+
+        break
+      else:
+        # Display an error message
+        print("There is an error")
+
+
+    #Exit the Loop
+    elif choice == "e":
+        break
+
+
+    #Invalid Input
+    else:
+        ("Please enter a valid input")
+
+
+#Start Looping For the Program
 while ProgramLoop:
 
   #Options To pick From
