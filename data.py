@@ -123,11 +123,11 @@ while userlogin:
       password = input("Enter your password:")
 
       #Log the User In
-      if username in userinfo and userinfo[username] == password:
-        logged_in = True
-        print("Login successful!")
-        ProgramLoop = True
-        break
+      for i in range(len(userinfo)):
+        if userinfo[i]["username"] == username and userinfo[i]["password"] == password:
+            print("Login successful!")
+            ProgramLoop = True
+            break
 
       else:
           #Incase UserInformation Not Found
@@ -140,10 +140,14 @@ while userlogin:
       password = input("Create a password:")
 
       # If the username is not already in the users dictionary, add it
-      if username not in userinfo:
-        userinfo[username] = password
-        print("Sign up successful!")
-        ProgramLoop = True
+      for i in range(len(userinfo)):
+        if userinfo[i]["username"] == username:
+            print("Account Already exists")
+
+        else:
+            userinfo.append({"username": username, "password": password, "favour":[]})
+            print("Sign up successful!")
+            ProgramLoop = True
 
         #Upload To JSON
         json_str = json.dumps(userinfo)
@@ -151,9 +155,6 @@ while userlogin:
             f.write(json_str)
 
         break
-      else:
-        # Display an error message
-        print("There is an error")
 
 
     #Exit the Loop
@@ -163,7 +164,7 @@ while userlogin:
 
     #Invalid Input
     else:
-        ("Please enter a valid input")
+        print("Please enter a valid input")
 
 
 #Start Looping For the Program
