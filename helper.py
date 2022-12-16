@@ -5,33 +5,32 @@ def bubbleSort(anArray, key):
                 anArray[i], anArray[j] = anArray[j], anArray[i]
 
 
-def binary_search(data, key):
-    
-    matched_record = []
-    
-    bottom = 0
-    top = len(data) -1
-    found = False
-    
-    while(bottom <= top):
-            middle = int((bottom + top)//2)
-            if data[middle] == key : 
-                matched_record.append((middle,key)) # position, key
-                # looking for the duplicates in left side of the match
-                for i in range(middle - 1, -1, -1):
-                    if data[i] == key:
-                        matched_record.append((i,key))
-                    else:
-                        break
-                # looking for the duplicates in right side of the match
-                for i in range(middle + 1, top):
-                    if data[i] == key:
-                        matched_record.append((i,key))
-                    else:
-                        break
-                break
-            else: 
-                if key < data[middle]: 
-                    top = middle -1
-                else: 
-                    bottom = middle +1
+def binary_search(list, key, value):
+  low = 0
+  high = len(list) - 1
+  while low <= high:
+    mid = (low + high) // 2
+    if list[mid][key] == value:
+      return mid
+    elif list[mid][key] < value:
+      low = mid + 1
+    else:
+      high = mid - 1
+  return -1
+
+
+def regbinarySearch(anArray, item):
+  lowIndex = 0
+  highIndex = len(anArray) - 1
+
+  while lowIndex <= highIndex:
+    middleIndex = (lowIndex + highIndex) // 2
+
+    if item == anArray[middleIndex]:
+      return middleIndex
+    elif item < anArray[middleIndex]:
+      highIndex = middleIndex - 1
+    else:
+      lowIndex = middleIndex + 1
+
+  return -1

@@ -22,8 +22,7 @@ file3.close()
 userinfo = json.loads(dataStr3)
 
 #Set Variable for user
-userposition = -1
-
+currentuser = -1
 
 #Loops
 userlogin = True
@@ -50,7 +49,7 @@ while userlogin:
         for i in range(len(userinfo)):
             if userinfo[i]["username"] == username and userinfo[i]["password"] == password:
                 print("Login successful!")
-                userposition = i
+                currentuser = username
                 ProgramLoop = True
                 userlogin = False
                 break
@@ -71,7 +70,7 @@ while userlogin:
         else:
             userinfo.append({"username": username, "password": password, "favour":[]})
             print("Sign up successful!")
-            userposition = len(userinfo)
+            currentuser = username
             ProgramLoop = True
             userlogin = False
 
@@ -89,6 +88,10 @@ while userlogin:
 with open("userinformation.json", "w") as f:
     json.dump(userinfo, f)
 
+
+#Find the user
+index = helper.binary_search(userinfo, 'username', currentuser)
+favlist = userinfo[index]["favour"]
 #Make functions For all of the Options
 
 #Option 1
@@ -131,7 +134,7 @@ def opt4():
         userin = input("What Is the name of the book you want to favouriate:\n").upper()
         for i in range(len(books)):
             if userin == books[i]["title"].upper():
-                userinfo[userposition]["favour"].append(books[i])
+                favlist.append(books[i])
                 print("Book Added")
                 return
         print("Book was not found")
@@ -141,13 +144,10 @@ def opt4():
 #Option 5
 def opt5():
         userin = input("Please enter The title of The book you want to Remove:\n").upper()
-        for i in range(len(userinfo)):
-            if userin == userinfo[userposition]["favour"]:
-                userinfo[userposition]["favour"].pop(i)
+        for i in range(len(favlist)):
+            if userin == favlist[i]["title"]:
+                favlist[i].pop()
                 print("Book removed")
-                return
-        print("Book was not found")
-        return
 
             
 #Option 6
