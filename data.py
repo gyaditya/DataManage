@@ -9,12 +9,6 @@ dataStr = file.read()
 file.close()
 books = json.loads(dataStr)
 
-#Load Favourites from JSON file
-file2 = open("fav.json", "r")
-dataStr2 = file2.read()
-file2.close()
-favs = json.loads(dataStr2)
-
 #Load User Information From JSON file
 file3 = open("userinformation.json", "r")
 dataStr3 = file3.read()
@@ -83,10 +77,13 @@ while userlogin:
     else:
         print("Please enter a valid input")
 
+#Write to JSON
+def writejson():
+    with open("userinformation.json", "w") as f:
+        json.dump(userinfo, f)
 
 # Upload to JSON
-with open("userinformation.json", "w") as f:
-    json.dump(userinfo, f)
+writejson()
 
 
 #Find the user
@@ -120,7 +117,7 @@ def opt2():
 #Option 3
 def opt3():
         userin = input("What is the data you want to sort by:\n").lower()
-        if userin == "title" or "author" or "isbn" or "genre":
+        if userin in ["title", "author", "isbn", "genre"]:
             helper.bubbleSort(books, userin)
             for i in range(len(books)):
                 print(books[i]["title"], ",",
@@ -135,6 +132,7 @@ def opt4():
         for i in range(len(books)):
             if userin == books[i]["title"].upper():
                 favlist.append(books[i])
+                writejson()
                 print("Book Added")
                 return
         print("Book was not found")
@@ -145,24 +143,25 @@ def opt4():
 def opt5():
         userin = input("Please enter The title of The book you want to Remove:\n").upper()
         for i in range(len(favlist)):
-            if userin == favlist[i]["title"]:
-                favlist[i].pop()
+            if userin == favlist[i]["title"].upper():
+                favlist.pop(i)
+                writejson()
                 print("Book removed")
+                return
+        print("Book Not found")
+        return
 
             
 #Option 6
 def opt6():
-        for i in range(len(favs)):
-            print(favs[i]["title"], ",",
-            favs[i]["author"], "," ,
-            favs[i]["isbn"], "," ,
-            favs[i]["genre"])
+        for i in range(len(favlist)):
+            print(favlist[i]["title"], ",",
+            favlist[i]["author"], "," ,
+            favlist[i]["isbn"], "," ,
+            favlist[i]["genre"])
 
 
-#Write to JSON
-def writejson():
-    with open("userinformation.json", "w") as f:
-        json.dump(userinfo, f)
+
 
 #Start Looping For the Program
 while ProgramLoop:
@@ -205,5 +204,5 @@ while ProgramLoop:
 
     #Option 7
     elif(userInput == "7"):
-        writejson()
+        userlogin = True
         break
