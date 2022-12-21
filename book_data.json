@@ -1,15 +1,16 @@
 [
     {
-      "title" : "Harry Potter and the Philosher's stone",
-      "author" : "J.K Rowling",
-      "isbn" : 545162076,
-      "genre" : "Fantasy"
+        "title" : "Harry Potter and the Philosher's stone",
+        "author" : "J.K Rowling",
+        "isbn" : 545162076,
+        "genre" : "Fantasy"
     },
     {
         "title" : "Masterminds Criminal Destiny",
         "author" : "Gordon Corman",
         "isbn" : 239203481,
-        "genre" : "Mystery"
+        "genre" : "SciFi"
+        
     },
     {
         "title" : "Caraval",
@@ -22,5 +23,77 @@
         "author" : "William Shakespheare",
         "isbn" : 239052359,
         "genre" : "Drama"
+    },
+    {
+        "title" : "Hunger Games",
+        "author" : "Suzanne Collins",
+        "isbn" : 193402034,
+        "genre" : "Action"
+    },
+    {
+        "title" : "To Kill a Mockingbird",
+        "author" : "Harper lee",
+        "isbn" : 204395802,
+        "genre" : "Thriller"
+    },
+    {
+        "title" : "The Hobbit",
+        "author" : "J.R.R Tolkien",
+        "isbn" : 590230623,
+        "genre" : "Action"
+    },
+    {
+        "title" : "The Lord of the Rings",
+        "author" : "J.R.R Tolkien",
+        "isbn" : 768920395,
+        "genre" : "Fantasy"
+    },
+    {
+        "title" : "The book Theif",
+        "author" : "Markus Zusak",
+        "isbn" : 934869023,
+        "genre" : "Adventure"
+    },
+    {
+        "title" : "The Outsiders",
+        "author" : "S.E Hilton",
+        "isbn" : 882395033,
+        "genre" : "Drama"
+    },
+    {
+        "title" : "The Princess Bride",
+        "author" : "William Goldman",
+        "isbn" : 498285324,
+        "genre" : "Romance"
+    },
+    {
+        "title" : "Twilight Series",
+        "author" : "Stephenie Meyer",
+        "isbn" : 689028767,
+        "genre" : "Romance"
+    },
+    {
+        "title" : "Stargirl",
+        "author" : "Jerry Spinelli",
+        "isbn" : 113041136,
+        "genre" : "Realistic Ficton"
+    },
+    {
+        "title" : "The Maze Runner",
+        "author" : "James Dashner",
+        "isbn" : 560122880,
+        "genre" : "SciFi"
+    },
+    {
+        "title" : "Percy Jackson",
+        "author" : "Rick Riordan",
+        "isbn" : 891783099,
+        "genre" : "Adventure"
+    },
+    {
+        "title" : "Clifford the Big Red Dog",
+        "author" : "Norman Bridwell",
+        "isbn" : 503464860,
+        "genre" : "Comedy"
     }
 ]
