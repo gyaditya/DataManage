@@ -1,31 +1,30 @@
-#Data Management by Adi
+# Data Management by Adi
 import json
 import helper
 
-
-#Load book data from JSON file
+# Load book data from JSON file
 file = open("book_data.json", "r")
 dataStr = file.read()
 file.close()
 books = json.loads(dataStr)
 
-#Load User Information From JSON file
+# Load User Information From JSON file
 file3 = open("userinformation.json", "r")
 dataStr3 = file3.read()
 file3.close()
 userinfo = json.loads(dataStr3)
 
-#Set Variable for user
+# Set Variable for user
 currentuser = -1
 favlist = -1
 
-#Find the user
+# Find the user
 def finduser():
     index = helper.binary_search(userinfo, 'username', currentuser)
-    favorlist = userinfo[index]["favour"]
-    return favorlist
+    favlist = userinfo[index]["favour"]
+    return favlist
 
-#Loops
+# Loops
 ProgramLoop = False
 
 # User Login and Create Account
@@ -35,7 +34,6 @@ def startLoop():
     global ProgramLoop
     userlogin = True
     while userlogin:
-
         # Print the options
         print("Enter 'L' to log in:")
         print("Enter 'S' to sign up:")
@@ -58,9 +56,9 @@ def startLoop():
                     ProgramLoop = True
                     userlogin = False
                     break
-                else:
-                    # In case user information not found
-                    print("Incorrect username or password.")
+            else:
+                # In case user information not found
+                print("Incorrect username or password.")
 
         # Signup
         elif choice == "s":
@@ -73,13 +71,12 @@ def startLoop():
                     print("Account Already exists")
                     break
             else:
-                userinfo.append({"username": username, "password": password, "favour":[]})
+                userinfo.append({"username": username, "password": password, "favour": []})
                 print("Sign up successful!")
                 currentuser = username
                 favlist = finduser()
                 ProgramLoop = True
-                startLoop()
-                break
+                userlogin = False
 
         # Exit the loop
         elif choice == "e":
@@ -90,95 +87,95 @@ def startLoop():
         else:
             print("Please enter a valid input")
 
-    #Write to JSON
+    # Write to JSON
+    writejson()
+
 def writejson():
+    global userinfo
     with open("userinformation.json", "w") as f:
         json.dump(userinfo, f)
 
-
 startLoop()
+
 # Upload to JSON
 writejson()
 
-#Make functions For all of the Options
+# Make functions For all of the Options
 
-#Option 1
+# Option 1
 def opt1():
-        for i in range(len(books)):
-            print(books[i]["title"], ",",
-            books[i]["author"], "," ,
-            books[i]["isbn"], "," ,
-            books[i]["genre"])
+    for i in range(len(books)):
+        print(
+            books[i]["title"], ",",
+            books[i]["author"], ",",
+            books[i]["isbn"], ",",
+            books[i]["genre"]
+        )
 
-
-#Option 2
+# Option 2
 def opt2():
-        userin = input("Enter the Genre of your book:\n").lower()
-        found = False
-        for i in range(len(books)):
-            if userin == books[i]["genre"].lower():
-                found = True
-                print(books[i]["title"], ",",
-                books[i]["author"], "," ,
-                books[i]["isbn"], "," ,
-                books[i]["genre"])
-        if not found:
-            print("None found")
+    userin = input("Enter the Genre of your book:\n").lower()
+    found = False
+    for i in range(len(books)):
+        if userin == books[i]["genre"].lower():
+            found = True
+            print(
+                books[i]["title"], ",",
+                books[i]["author"], ",",
+                books[i]["isbn"], ",",
+                books[i]["genre"]
+            )
+    if not found:
+        print("None found")
 
-
-#Option 3
+# Option 3
 def opt3():
-        userin = input("What is the data you want to sort by:\n").lower()
-        if userin in ["title", "author", "isbn", "genre"]:
-            helper.bubbleSort(books, userin)
-            for i in range(len(books)):
-                print(books[i]["title"], ",",
-                books[i]["author"], "," ,
-                books[i]["isbn"], "," ,
-                books[i]["genre"])
-
-
-#Option 4
-def opt4():
-        userin = input("What Is the name of the book you want to favouriate:\n").upper()
+    userin = input("What is the data you want to sort by:\n").lower()
+    if userin in ["title", "author", "isbn", "genre"]:
+        helper.bubbleSort(books, userin)
         for i in range(len(books)):
-            if userin == books[i]["title"].upper():
-                favlist.append(books[i])
-                writejson()
-                print("Book Added")
-                return
-        print("Book was not found")
-        return
+            print(
+                books[i]["title"], ",",
+                books[i]["author"], ",",
+                books[i]["isbn"], ",",
+                books[i]["genre"]
+            )
 
+# Option 4
+def opt4():
+    userin = input("What Is the name of the book you want to favouriate:\n").upper()
+    for i in range(len(books)):
+        if userin == books[i]["title"].upper():
+            favlist.append(books[i])
+            writejson()
+            print("Book Added")
+            return
+    print("Book was not found")
 
-#Option 5
+# Option 5
 def opt5():
-        userin = input("Please enter The title of The book you want to Remove:\n").upper()
-        for i in range(len(favlist)):
-            if userin == favlist[i]["title"].upper():
-                favlist.pop(i)
-                writejson()
-                print("Book removed")
-                return
-        print("Book Not found")
-        return
+    userin = input("Please enter The title of The book you want to Remove:\n").upper()
+    for i in range(len(favlist)):
+        if userin == favlist[i]["title"].upper():
+            favlist.pop(i)
+            writejson()
+            print("Book removed")
+            return
+    print("Book Not found")
 
-            
-#Option 6
+# Option 6
 def opt6():
-        for i in range(len(favlist)):
-            print(favlist[i]["title"], ",",
-            favlist[i]["author"], "," ,
-            favlist[i]["isbn"], "," ,
-            favlist[i]["genre"])
+    for i in range(len(favlist)):
+        print(
+            favlist[i]["title"], ",",
+            favlist[i]["author"], ",",
+            favlist[i]["isbn"], ",",
+            favlist[i]["genre"]
+        )
 
-
-
-
-#Start Looping For the Program
+# Start Looping For the Program
 while ProgramLoop:
-
-  #Options To pick From
+    # Options To pick From
     print("OPTION 1: Display all of the data")
     print("OPTION 2: Display some of the data")
     print("OPTION 3: Sort the data")
@@ -187,35 +184,34 @@ while ProgramLoop:
     print("OPTION 6: Display favourites list / shopping cart")
     print("OPTION 7: Exit")
 
-    #Input From The user
+    # Input From The user
     userInput = input("Pick your Option:")
 
-    #Option 1
-    if(userInput == "1"):
+    # Option 1
+    if userInput == "1":
         opt1()
 
-    #Option 2
-    elif(userInput == "2"):
+    # Option 2
+    elif userInput == "2":
         opt2()
 
-    #Option 3
-    elif(userInput == "3"):
+    # Option 3
+    elif userInput == "3":
         opt3()
 
-    #Option 4
-    elif(userInput == "4"):
+    # Option 4
+    elif userInput == "4":
         opt4()
 
-    #Option 5
-    elif(userInput == "5"):
+    # Option 5
+    elif userInput == "5":
         opt5()
 
-    #Option 6
-    elif(userInput == "6"):
+    # Option 6
+    elif userInput == "6":
         opt6()
 
-    #Option 7
-    elif(userInput == "7"):
+    # Option 7
+    elif userInput == "7":
         ProgramLoop = False
         startLoop()
-        break
